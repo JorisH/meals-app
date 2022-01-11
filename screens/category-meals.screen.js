@@ -19,7 +19,9 @@ const CategoryDetailsScreen = (props) => {
         duration={duration}
         complexity={complexity}
         affordability={affordability}
-        onPress={() => {}}
+        onPress={() => {
+          navigation.navigate('MealDetails', { mealId: mealData.item.id });
+        }}
       />
     );
   };
