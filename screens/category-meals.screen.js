@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 import { CATEGORIES, MEALS } from '../data/dummy-data';
 import MealItem from '../components/meal-item/meal-item.component';
 
 const CategoryDetailsScreen = (props) => {
-  const { navigation } = { ...props };
-  const catId = navigation.getParam('categoryId');
+  const { navigation, route } = { ...props };
+  const catId = route.params.categoryId;
+
+  const selectedCategory = CATEGORIES.find((cat) => cat.id === catId);
   const meals = MEALS.filter((meal) => meal.categoryIds.includes(catId));
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerTitle: selectedCategory.title,
+    });
+  }, [navigation, selectedCategory]);
 
   const renderMealItem = (mealData) => {
     const { title, duration, complexity, affordability, imageUrl } =
@@ -35,14 +43,6 @@ const CategoryDetailsScreen = (props) => {
       />
     </View>
   );
-};
-
-CategoryDetailsScreen.navigationOptions = ({ navigation }) => {
-  const catId = navigation.getParam('categoryId');
-  const selectedCategory = CATEGORIES.find((cat) => cat.id === catId);
-  return {
-    headerTitle: selectedCategory.title,
-  };
 };
 
 const styles = StyleSheet.create({

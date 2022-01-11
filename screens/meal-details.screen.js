@@ -1,33 +1,30 @@
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import HeaderButton from '../components/header-button/header-button.component';
 import { MEALS } from '../data/dummy-data';
 
 const MealDetailsScreen = (props) => {
-  const { navigation } = props;
-  const mealId = navigation.getParam('mealId');
-
+  const { navigation, route } = props;
+  const mealId = route.params.mealId;
   const selectedMeal = MEALS.find((meal) => meal.id === mealId);
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerTitle: selectedMeal.title,
+      headerRight: () => (
+        <HeaderButtons HeaderButtonComponent={HeaderButton}>
+          <Item title="favorite" iconName="ios-star" onPress={() => {}} />
+        </HeaderButtons>
+      ),
+    });
+  }, [navigation, selectedMeal]);
 
   return (
     <View style={styles.screen}>
       <Text>{selectedMeal.title}</Text>
     </View>
   );
-};
-
-MealDetailsScreen.navigationOptions = ({ navigation }) => {
-  const mealId = navigation.getParam('mealId');
-  const selectedMeal = MEALS.find((meal) => meal.id === mealId);
-  return {
-    headerTitle: selectedMeal.title,
-    headerRight: () => (
-      <HeaderButtons HeaderButtonComponent={HeaderButton}>
-        <Item title="favorite" iconName="ios-star" onPress={() => {}} />
-      </HeaderButtons>
-    ),
-  };
 };
 
 const styles = StyleSheet.create({
