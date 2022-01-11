@@ -1,7 +1,8 @@
 import { Platform } from 'react-native';
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-// import { createBottomTabNavigator } from 'react-navigation-tabs';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Ionicons } from '@expo/vector-icons';
 
 import CategoriesScreen from '../screens/categories.screen';
 import CategoryDetailsScreen from '../screens/category-meals.screen';
@@ -34,9 +35,36 @@ const MealsNavigator = () => (
   </Stack.Navigator>
 );
 
-// const MealsFavTabNavigator = createBottomTabNavigator({
-//   Meals: MealsNavigator,
-//   Favorites: FavoritesScreen,
-// });
+const Tabs = createBottomTabNavigator();
 
-export default MealsNavigator;
+const MainTabs = () => (
+  <Tabs.Navigator
+    initialRouteName="Meals"
+    screenOptions={({ route }) => {
+      return {
+        tabBarActiveTintColor: Colors.accentColor,
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
+
+          if (route.name === 'Meals') {
+            iconName = focused ? 'ios-restaurant' : 'ios-restaurant-outline';
+          } else if (route.name === 'Favorites') {
+            iconName = focused ? 'ios-star' : 'ios-star-outline';
+          }
+
+          // You can return any component that you like here!
+          return <Ionicons name={iconName} size={size} color={color} />;
+        },
+      };
+    }}
+  >
+    <Tabs.Screen
+      name="Meals"
+      component={MealsNavigator}
+      options={{ headerShown: false }}
+    />
+    <Tabs.Screen name="Favorites" component={FavoritesScreen} />
+  </Tabs.Navigator>
+);
+
+export default MainTabs;

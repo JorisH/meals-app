@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
-import * as Font from 'expo-font';
-import AppLoading from 'expo-app-loading';
+import { View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import MealsNavigator from './navigation/meals.navigator';
 import { enableScreens } from 'react-native-screens';
+import { StatusBar } from 'expo-status-bar';
+import AppLoading from 'expo-app-loading';
+
+import Navigator from './navigation/meals.navigator';
+
+import * as Font from 'expo-font';
 
 enableScreens();
 
@@ -29,7 +33,8 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <MealsNavigator />
+      <Navigator />
+      <StatusBar style="auto" />
     </NavigationContainer>
   );
 }
