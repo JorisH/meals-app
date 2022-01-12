@@ -52,6 +52,8 @@ const tabScreenOptions = ({ route }) => {
       // You can return any component that you like here!
       return <Ionicons name={iconName} size={25} color={color} />;
     },
+    tabBarColor:
+      route.name === 'Meals' ? Colors.primaryColor : Colors.accentColor,
   };
 };
 
@@ -59,8 +61,8 @@ const AndroidTabs = () => (
   <Tabs.Navigator
     initialRouteName="Meals"
     screenOptions={tabScreenOptions}
-    activeColor={Colors.accentColor}
-    barStyle={{ backgroundColor: Colors.primaryColor }}
+    activeColor="#fff"
+    barStyle={{ backgroundColor: Colors.primaryColor }} // used when shifting={false}
     shifting={true}
   >
     <Tabs.Screen
