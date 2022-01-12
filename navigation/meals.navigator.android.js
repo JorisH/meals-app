@@ -1,40 +1,10 @@
-import { View } from 'react-native';
-
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 
-import CategoriesScreen from '../screens/categories.screen';
-import CategoryDetailsScreen from '../screens/category-meals.screen';
-import MealDetailsScreen from '../screens/meal-details.screen';
-import FavoritesScreen from '../screens/favorites.screen';
+import MealsStackNavigator from './meals.stack.navigator';
+import FavoritesStackNavigator from './favorites.stack.navigator';
 
 import Colors from '../constants/colors';
-
-const Stack = createNativeStackNavigator();
-
-const MealsNavigator = () => (
-  <View style={{ flex: 1 }} collapsable={false}>
-    <Stack.Navigator
-      initialRouteName="Categories"
-      screenOptions={{
-        gestureEnabled: false,
-        headerStyle: {
-          backgroundColor: Colors.primaryColor,
-        },
-        headerTintColor: 'white',
-      }}
-    >
-      <Stack.Screen
-        name="Categories"
-        component={CategoriesScreen}
-        options={{ headerTitle: 'Meal Categories' }}
-      />
-      <Stack.Screen name="CategoryMeals" component={CategoryDetailsScreen} />
-      <Stack.Screen name="MealDetails" component={MealDetailsScreen} />
-    </Stack.Navigator>
-  </View>
-);
 
 const Tabs = createMaterialBottomTabNavigator();
 
@@ -67,10 +37,14 @@ const AndroidTabs = () => (
   >
     <Tabs.Screen
       name="Meals"
-      component={MealsNavigator}
+      component={MealsStackNavigator}
       options={{ headerShown: false }}
     />
-    <Tabs.Screen name="Favorites" component={FavoritesScreen} />
+    <Tabs.Screen
+      name="Favorites"
+      component={FavoritesStackNavigator}
+      options={{ headerShown: false }}
+    />
   </Tabs.Navigator>
 );
 
