@@ -13,19 +13,15 @@ const FavoritesStackNavigator = () => (
     <Stack.Navigator
       initialRouteName="My Favorites"
       screenOptions={{
-        gestureEnabled: false,
         headerStyle: {
           backgroundColor: Platform.OS === 'android' ? Colors.primaryColor : '',
         },
         headerTintColor:
           Platform.OS === 'android' ? 'white' : Colors.primaryColor,
+        headerTitleStyle: { fontFamily: 'open-sans-bold' },
       }}
     >
-      <Stack.Screen
-        name="My Favorites"
-        component={FavoritesScreen}
-        options={{ headerTitle: 'Favorites' }}
-      />
+      <Stack.Screen name="My Favorites" component={FavoritesScreen} />
       <Stack.Screen name="MealDetails" component={MealDetailsScreen} />
     </Stack.Navigator>
   </View>

@@ -20,6 +20,8 @@ const CategoriesScreen = ({ navigation }) => {
 
   useLayoutEffect(() => {
     navigation.setOptions({
+      title: 'Meal Categories', // works on android
+      headerTitle: 'Meal Categories', // doesn't work on android, only IOS?
       headerLeft: () => (
         <HeaderButtons HeaderButtonComponent={HeaderButton}>
           <Item

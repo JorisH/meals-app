@@ -14,19 +14,15 @@ const MealsStackNavigator = () => (
     <Stack.Navigator
       initialRouteName="Categories"
       screenOptions={{
-        gestureEnabled: false,
         headerStyle: {
           backgroundColor: Platform.OS === 'android' ? Colors.primaryColor : '',
         },
         headerTintColor:
           Platform.OS === 'android' ? 'white' : Colors.primaryColor,
+        headerTitleStyle: { fontFamily: 'open-sans-bold' },
       }}
     >
-      <Stack.Screen
-        name="Categories"
-        component={CategoriesScreen}
-        options={{ headerTitle: 'Meal Categories' }}
-      />
+      <Stack.Screen name="Categories" component={CategoriesScreen} />
       <Stack.Screen name="CategoryMeals" component={CategoryDetailsScreen} />
       <Stack.Screen name="MealDetails" component={MealDetailsScreen} />
     </Stack.Navigator>

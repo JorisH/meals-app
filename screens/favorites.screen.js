@@ -13,6 +13,8 @@ const FavoritesScreen = ({ navigation }) => {
 
   useLayoutEffect(() => {
     navigation.setOptions({
+      title: 'My Favorite Meals',
+      headerTitle: 'My Favorite Meals',
       headerLeft: () => (
         <HeaderButtons HeaderButtonComponent={HeaderButton}>
           <Item
