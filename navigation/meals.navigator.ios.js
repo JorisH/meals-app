@@ -21,7 +21,7 @@ const tabScreenOptions = ({ route }) => {
       }
 
       // You can return any component that you like here!
-      return <Ionicons name={iconName} size={25} color={color} />;
+      return <Ionicons name={iconName} size={23} color={color} />;
     },
   };
 };

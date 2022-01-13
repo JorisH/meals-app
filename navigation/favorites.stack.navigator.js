@@ -19,6 +19,7 @@ const FavoritesStackNavigator = () => (
         },
         headerTintColor:
           Platform.OS === 'android' ? 'white' : Colors.primaryColor,
+        headerTitleStyle: { fontFamily: 'open-sans-bold' },
       }}
     >
       <Stack.Screen

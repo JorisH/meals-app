@@ -14,12 +14,12 @@ const MealsStackNavigator = () => (
     <Stack.Navigator
       initialRouteName="Categories"
       screenOptions={{
-        gestureEnabled: false,
         headerStyle: {
           backgroundColor: Platform.OS === 'android' ? Colors.primaryColor : '',
         },
         headerTintColor:
           Platform.OS === 'android' ? 'white' : Colors.primaryColor,
+        headerTitleStyle: { fontFamily: 'open-sans-bold' },
       }}
     >
       <Stack.Screen
