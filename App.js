@@ -1,11 +1,11 @@
+import 'react-native-gesture-handler'; // must be first line!!!!
 import React, { useState } from 'react';
-import { View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { enableScreens } from 'react-native-screens';
 import { StatusBar } from 'expo-status-bar';
 import AppLoading from 'expo-app-loading';
 
-import Navigator from './navigation/meals.navigator';
+import Navigator from './navigation/filters.drawer.navigator';
 
 import * as Font from 'expo-font';
 

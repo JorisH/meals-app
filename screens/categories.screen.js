@@ -1,20 +1,36 @@
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
 import { FlatList } from 'react-native';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import CategoryGridTile from '../components/category-grid-tile/category-grid-tile.component';
+import HeaderButton from '../components/header-button/header-button.component';
 
 import { CATEGORIES } from '../data/dummy-data';
 
-const CategoriesScreen = (props) => {
+const CategoriesScreen = ({ navigation }) => {
   const renderGridItem = (catData) => {
     const { id, title, color } = catData.item;
     const onPress = () => {
-      props.navigation.navigate('CategoryMeals', {
+      navigation.navigate('CategoryMeals', {
         categoryId: id,
       });
     };
 
     return <CategoryGridTile title={title} color={color} onPress={onPress} />;
   };
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerLeft: () => (
+        <HeaderButtons HeaderButtonComponent={HeaderButton}>
+          <Item
+            title="menu"
+            iconName="ios-menu"
+            onPress={() => navigation.toggleDrawer()}
+          />
+        </HeaderButtons>
+      ),
+    });
+  }, [navigation]);
 
   return (
     <FlatList data={CATEGORIES} renderItem={renderGridItem} numColumns={2} />
