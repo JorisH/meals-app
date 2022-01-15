@@ -2,27 +2,34 @@ import React, { useLayoutEffect } from 'react';
 import { ScrollView, StyleSheet, Text, View, Image } from 'react-native';
 
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import { useDispatch } from 'react-redux';
 import DefaultText from '../components/default-text/default-text.component';
 import HeaderButton from '../components/header-button/header-button.component';
 import ListItem from '../components/list-item/list-item.component';
 
 import { MEALS } from '../data/dummy-data';
+import { addFavoriteMeal } from '../redux/meals/meals.actions';
 
 const MealDetailsScreen = (props) => {
   const { navigation, route } = props;
   const mealId = route.params.mealId;
   const selectedMeal = MEALS.find((meal) => meal.id === mealId);
+  const dispatch = useDispatch();
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: selectedMeal.title,
       headerRight: () => (
         <HeaderButtons HeaderButtonComponent={HeaderButton}>
-          <Item title="favorite" iconName="ios-star" onPress={() => {}} />
+          <Item
+            title="favorite"
+            iconName="ios-star"
+            onPress={() => dispatch(addFavoriteMeal(selectedMeal))}
+          />
         </HeaderButtons>
       ),
     });
-  }, [navigation, selectedMeal]);
+  }, [navigation, selectedMeal, dispatch]);
 
   return (
     <ScrollView>

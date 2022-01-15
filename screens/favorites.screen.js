@@ -1,15 +1,15 @@
 import React, { useLayoutEffect } from 'react';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import { useSelector } from 'react-redux';
 
 import HeaderButton from '../components/header-button/header-button.component';
 import MealList from '../components/meal-list/meal-list.component';
-
-import { MEALS } from '../data/dummy-data';
+import { getFavorites } from '../redux/meals/meals.selectors';
 
 const FavoritesScreen = ({ navigation }) => {
-  const favoriteMeals = MEALS.filter(
-    (meal) => meal.id === 'm1' || meal.id === 'm2'
-  );
+  const { favoriteMeals } = useSelector((state) => ({
+    favoriteMeals: getFavorites(state),
+  }));
 
   useLayoutEffect(() => {
     navigation.setOptions({

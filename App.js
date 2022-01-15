@@ -1,11 +1,13 @@
 import 'react-native-gesture-handler'; // must be first line!!!!
 import React, { useState } from 'react';
+import { Provider } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
 import { enableScreens } from 'react-native-screens';
 import { StatusBar } from 'expo-status-bar';
 import AppLoading from 'expo-app-loading';
 
 import Navigator from './navigation/filters.drawer.navigator';
+import store from './redux/store';
 
 import * as Font from 'expo-font';
 
@@ -32,9 +34,11 @@ export default function App() {
   }
 
   return (
-    <NavigationContainer>
-      <Navigator />
-      <StatusBar style="auto" />
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Navigator />
+        <StatusBar style="auto" />
+      </NavigationContainer>
+    </Provider>
   );
 }

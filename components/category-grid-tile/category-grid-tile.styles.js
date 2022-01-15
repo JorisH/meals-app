@@ -25,7 +25,7 @@ export default StyleSheet.create({
   },
   title: {
     fontFamily: 'open-sans-bold',
-    fontSize: 22,
+    fontSize: 20,
     textAlign: 'right',
   },
 });
